@@ -2,5 +2,14 @@
   "name": "Amazon URL Shortener",
   "version": "0.0.0",
   "description": "URL shortener for Amazon.",
+  "background": {
+    "scripts": [
+      "./src/background.js"
+    ],
+    "persistent": false
+  },
+  "permissions": [
+    "declarativeContent"
+  ],
   "manifest_version": 2
 }
