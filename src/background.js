@@ -1,6 +1,6 @@
 const pageStateMatcher = new chrome.declarativeContent.PageStateMatcher({
   pageUrl: {
-    hostEquals: 'amazon.com',
+    hostEquals: 'www.amazon.com',
   },
 });
 
