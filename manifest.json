@@ -1,0 +1,6 @@
+{
+  "name": "Amazon URL Shortener",
+  "version": "0.0.0",
+  "description": "URL shortener for Amazon.",
+  "manifest_version": 2
+}
