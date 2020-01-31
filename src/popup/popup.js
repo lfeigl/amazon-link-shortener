@@ -10,8 +10,13 @@ buttonShorten.onclick = () => {
     currentWindow: true,
   }, (tabs) => {
     const tab = tabs[0];
-    shortenedUrl = inputUrl.value = tab.url;
-    buttonCopy.disabled = false;
+
+    try {
+      shortenedUrl = inputUrl.value = shortenUrl(tab.url);
+      buttonCopy.disabled = false;
+    } catch (err) {
+      infoError(err.message);
+    }
   });
 };
 
@@ -24,14 +29,31 @@ buttonCopy.onclick = () => {
         spanInfo.textContent = 'Copied URL to clipboard.';
       }, () => {
         // Fail
-        failedCopying();
+        infoError('Could not copy URL to clipboard.');
       });
   } else {
-    failedCopying();
+    infoError('Could not copy URL to clipboard.');
   }
 };
 
-function failedCopying() {
+function shortenUrl(url) {
+  const regExp = /(\/dp\/|\/product\/)([a-zA-Z0-9]{10})/;
+
+  if (regExp.test(url)) {
+    const match = url.match(regExp);
+
+    if (Array.isArray(match)) {
+      // Amazon Standard Identification Number (ASIN)
+      const asin = match[2];
+
+      return 'https://www.amazon.com/dp/' + asin;
+    }
+  }
+
+  throw new Error('Could not shorten URL.');
+}
+
+function infoError(err) {
   spanInfo.style.color = 'red';
-  spanInfo.textContent = 'Could not copy URL to clipboard.';
+  spanInfo.textContent = err;
 }
