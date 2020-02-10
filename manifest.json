@@ -1,25 +1,29 @@
 {
+  "manifest_version": 2,
   "name": "Amazon URL Shortener",
   "version": "0.0.0",
   "description": "URL shortener for Amazon.",
-  "background": {
-    "scripts": [
-      "./src/background.js"
-    ],
-    "persistent": false
-  },
-  "page_action": {
-    "default_popup": "./src/popup/popup.html"
-  },
   "permissions": [
     "activeTab",
     "declarativeContent"
   ],
+  "background": {
+    "scripts": ["./background.js"],
+    "persistent": false
+  },
+  "page_action": {
+    "default_popup": "./popup/popup.html",
+    "default_icon": {
+      "16": "./icons/amazon-url-shortener_16.png",
+      "32": "./icons/amazon-url-shortener_32.png",
+      "48": "./icons/amazon-url-shortener_48.png",
+      "128": "./icons/amazon-url-shortener_128.png"
+    }
+  },
   "icons": {
     "16": "./icons/amazon-url-shortener_16.png",
     "32": "./icons/amazon-url-shortener_32.png",
     "48": "./icons/amazon-url-shortener_48.png",
     "128": "./icons/amazon-url-shortener_128.png"
-  },
-  "manifest_version": 2
+  }
 }
