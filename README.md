@@ -1,6 +1,6 @@
 # Amazon Link Shortener
 
-![(Logo)](./icons/amazon-url-shortener_128.png)
+![(Logo)](./icons/logo_128.png)
 
 Open Chrome extension for shortening Amazon links.
 
