@@ -65,7 +65,6 @@ function applyRegExp(url, regExp, group) {
 }
 
 function infoError(err) {
-  console.error(err);
   spanInfo.style.color = 'red';
   spanInfo.textContent = err.message;
 }
