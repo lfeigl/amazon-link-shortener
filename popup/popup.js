@@ -21,18 +21,20 @@ buttonShorten.onclick = () => {
 };
 
 buttonCopy.onclick = () => {
+  const copyErrMsg = 'Could not copy link to clipboard.';
+
   if (shortenedUrl) {
     navigator.clipboard.writeText(shortenedUrl)
       .then(() => {
         // Success
         spanInfo.style.color = 'blue';
-        spanInfo.textContent = 'Copied URL to clipboard.';
+        spanInfo.textContent = 'Copied link to clipboard.';
       }, () => {
         // Fail
-        infoError(new Error('Could not copy URL to clipboard.'));
+        infoError(new Error(copyErrMsg));
       });
   } else {
-    infoError(new Error('Could not copy URL to clipboard.'));
+    infoError(new Error(copyErrMsg));
   }
 };
 
@@ -48,7 +50,7 @@ function shortenUrl(url) {
     return `${protocol}://www.amazon.${tld}/dp/${asin}`;
   } catch (err) {
     console.error(err);
-    throw new Error('Could not shorten URL.');
+    throw new Error('Could not shorten link.');
   }
 }
 
