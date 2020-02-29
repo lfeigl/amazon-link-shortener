@@ -2,7 +2,23 @@ const buttonShorten = document.getElementById('button-shorten');
 const buttonCopy = document.getElementById('button-copy');
 const inputUrl = document.getElementById('input-url');
 const spanInfo = document.getElementById('span-info');
+const defaultOpts = {
+  shorterUrl: true,
+};
+let opts;
 let shortenedUrl = null;
+
+chrome.storage.sync.get('options', ({ options: savedOpts }) => {
+  if (chrome.runtime.lastError) {
+    return infoError(chrome.runtime.lastError);
+  }
+
+  if (savedOpts) {
+    opts = savedOpts;
+  } else {
+    opts = Object.assign({}, defaultOpts);
+  }
+});
 
 buttonShorten.onclick = () => {
   chrome.tabs.query({
@@ -47,7 +63,11 @@ function shortenUrl(url) {
     // Amazon Standard Identification Number (ASIN)
     const asin = applyRegExp(url, /(\/dp\/|\/product\/)([a-zA-Z0-9]{10})/, 2);
 
-    return `${protocol}://www.amazon.${tld}/dp/${asin}`;
+    if (opts.shorterUrl) {
+      return `amazon.${tld}/dp/${asin}`;
+    } else {
+      return `${protocol}://www.amazon.${tld}/dp/${asin}`;
+    }
   } catch (err) {
     console.error(err);
     throw new Error('Could not shorten link.');
