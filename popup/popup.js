@@ -2,21 +2,14 @@ const buttonShorten = document.getElementById('button-shorten');
 const buttonCopy = document.getElementById('button-copy');
 const inputUrl = document.getElementById('input-url');
 const spanInfo = document.getElementById('span-info');
-const defaultOpts = {
-  shorterUrl: true,
-};
-let opts;
+let opts = null;
 let shortenedUrl = null;
 
 chrome.storage.sync.get('options', ({ options: savedOpts }) => {
   if (chrome.runtime.lastError) {
-    return infoError(chrome.runtime.lastError);
-  }
-
-  if (savedOpts) {
-    opts = savedOpts;
+    infoError(chrome.runtime.lastError);
   } else {
-    opts = Object.assign({}, defaultOpts);
+    opts = savedOpts;
   }
 });
 

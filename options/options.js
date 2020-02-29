@@ -1,23 +1,15 @@
 const checkboxShorterUrl = document.getElementById('checkbox-shorter-url');
 const buttonSave = document.getElementById('button-save');
 const spanInfo = document.getElementById('span-info');
-const defaultOpts = {
-  shorterUrl: true,
-};
-let opts;
+let opts = null;
 
 chrome.storage.sync.get('options', ({ options: savedOpts }) => {
   if (chrome.runtime.lastError) {
-    return infoError(chrome.runtime.lastError);
-  }
-
-  if (savedOpts) {
-    opts = savedOpts;
+    infoError(chrome.runtime.lastError);
   } else {
-    opts = Object.assign({}, defaultOpts);
+    opts = savedOpts;
+    loadOpts();
   }
-
-  loadOpts();
 });
 
 function loadOpts() {
