@@ -7,6 +7,10 @@ const defaultOpts = {
 let opts;
 
 chrome.storage.sync.get('options', ({ options: savedOpts }) => {
+  if (chrome.runtime.lastError) {
+    return infoError(chrome.runtime.lastError);
+  }
+
   if (savedOpts) {
     opts = savedOpts;
   } else {
@@ -20,6 +24,11 @@ function loadOpts() {
   checkboxShorterUrl.checked = opts.shorterUrl;
 }
 
+function infoError(err) {
+  spanInfo.style.color = 'red';
+  spanInfo.textContent = err.message;
+}
+
 checkboxShorterUrl.onchange = () => {
   opts.shorterUrl = checkboxShorterUrl.checked;
 };
@@ -28,6 +37,10 @@ buttonSave.onclick = () => {
   chrome.storage.sync.set({
     options: opts,
   }, () => {
+    if (chrome.runtime.lastError) {
+      return infoError(chrome.runtime.lastError);
+    }
+
     spanInfo.style.color = 'blue';
     spanInfo.textContent = 'Saved options.';
     setTimeout(() => {
