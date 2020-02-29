@@ -26,9 +26,7 @@ checkboxShorterUrl.onchange = () => {
 };
 
 buttonSave.onclick = () => {
-  chrome.storage.sync.set({
-    options: opts,
-  }, () => {
+  chrome.storage.sync.set({ options: opts }, () => {
     if (chrome.runtime.lastError) {
       return infoError(chrome.runtime.lastError);
     }
