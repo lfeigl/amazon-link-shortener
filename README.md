@@ -32,7 +32,14 @@ Open Chrome extension for shortening Amazon links.
 - amazon.sg (Singapore)
 
 
-## Contribution
+## Options
+
+- Use shorter link *(omit protocol & subdomain)*
+  - Standard link: "https://www.amazon.com/dp/..."
+  - Shorter link: "amazon.com/dp/..."
+
+
+## Contribute
 
 ### ESLint
 
