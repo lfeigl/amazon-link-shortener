@@ -52,6 +52,11 @@ Afterwards you can use the config in this directory:
 `.eslintrc.json`
 
 
+## Changelog
+
+[Changelog](./CHANGELOG.md)
+
+
 ## License
 
 [License](./LICENSE)
