@@ -5,6 +5,11 @@
 Open Chrome extension for shortening Amazon links.
 
 
+## Installation
+
+Get the extension [here](https://chrome.google.com/webstore/detail/amazon-link-shortener/icmfnidfjiijmillgohhmallljgbcdgn).
+
+
 ## Supported Protocols
 
 - HTTP
