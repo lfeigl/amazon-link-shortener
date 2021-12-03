@@ -1,39 +1,47 @@
 // Top-level domains (TLDs)
 const tlds = [
-  // United Arab Emirates
-  'ae',
-  // Canada
-  'ca',
-  // China
-  'cn',
-  // Japan
-  'co.jp',
-  // United Kingdom
-  'co.uk',
-  // United States
-  'com',
   // Australia
   'com.au',
   // Brazil
   'com.br',
-  // Mexico
-  'com.mx',
-  // Turkey
-  'com.tr',
-  // Germany
-  'de',
-  // Spain
-  'es',
+  // Canada
+  'ca',
+  // China
+  'cn',
+  // Egypt
+  'eg',
   // France
   'fr',
-  // Italy
-  'it',
+  // Germany
+  'de',
   // India
   'in',
+  // Italy
+  'it',
+  // Japan
+  'co.jp',
+  // Mexico
+  'com.mx',
   // Netherlands
   'nl',
+  // Poland
+  'pl',
+  // Saudi Arabia
+  'sa',
   // Singapore
   'sg',
+  // Spain,
+  'es',
+  // Sweden
+  'se',
+  // Turkey
+  'com.tr',
+  // United Arab Emirates
+  'ae',
+  // United Kingdom
+  'co.uk',
+  // United States
+  'com',
 ].join('|');
 
 const defaultOpts = {
