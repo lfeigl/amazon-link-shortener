@@ -1,5 +1,5 @@
 {
-  "manifest_version": 2,
+  "manifest_version": 3,
   "name": "Amazon Link Shortener",
   "version": "1.0.0",
   "description": "Link shortener for Amazon.",
@@ -9,10 +9,9 @@
     "storage"
   ],
   "background": {
-    "scripts": ["./background.js"],
-    "persistent": false
+    "service_worker": "./background.js"
   },
-  "page_action": {
+  "action": {
     "default_popup": "./popup/popup.html",
     "default_icon": {
       "16": "./icons/logo_16.png",
