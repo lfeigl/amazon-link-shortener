@@ -5,13 +5,40 @@ const spanInfo = document.getElementById('span-info');
 let opts = null;
 let shortenedUrl = null;
 
-chrome.storage.sync.get('options', ({ options: savedOpts }) => {
-  if (chrome.runtime.lastError) {
-    infoError(chrome.runtime.lastError);
-  } else {
-    opts = savedOpts;
+function applyRegExp(url, regExp, group) {
+  if (regExp.test(url)) {
+    const match = url.match(regExp);
+
+    if (Array.isArray(match) && match[group]) return match[group];
   }
-});
+
+  throw new Error('Could not apply regular expression.');
+}
+
+function shortenUrl(url) {
+  try {
+    // HTTP or HTTPS
+    const protocol = applyRegExp(url, /^(http[s]?):/, 1);
+    // Top-level domain (TLD)
+    const tld = applyRegExp(url, /\/\/www\.amazon\.([a-z.]+)/, 1);
+    // Amazon Standard Identification Number (ASIN)
+    const asin = applyRegExp(url, /(\/dp\/|\/product\/)([a-zA-Z0-9]{10})/, 2);
+
+    if (opts.shorterUrl) {
+      return `amazon.${tld}/dp/${asin}`;
+    }
+
+    return `${protocol}://www.amazon.${tld}/dp/${asin}`;
+  } catch (err) {
+    console.error(err);
+    throw new Error('Could not shorten link.');
+  }
+}
+
+function infoError(err) {
+  spanInfo.style.color = 'red';
+  spanInfo.textContent = err.message;
+}
 
 buttonShorten.onclick = () => {
   chrome.tabs.query({
@@ -21,7 +48,8 @@ buttonShorten.onclick = () => {
     const tab = tabs[0];
 
     try {
-      shortenedUrl = inputUrl.value = shortenUrl(tab.url);
+      inputUrl.value = shortenUrl(tab.url);
+      shortenedUrl = inputUrl.value;
       buttonCopy.disabled = false;
     } catch (err) {
       infoError(err);
@@ -47,37 +75,10 @@ buttonCopy.onclick = () => {
   }
 };
 
-function shortenUrl(url) {
-  try {
-    // HTTP or HTTPS
-    const protocol = applyRegExp(url, /^(http[s]?):/, 1);
-    // Top-level domain (TLD)
-    const tld = applyRegExp(url, /\/\/www\.amazon\.([a-z.]+)/, 1);
-    // Amazon Standard Identification Number (ASIN)
-    const asin = applyRegExp(url, /(\/dp\/|\/product\/)([a-zA-Z0-9]{10})/, 2);
-
-    if (opts.shorterUrl) {
-      return `amazon.${tld}/dp/${asin}`;
-    } else {
-      return `${protocol}://www.amazon.${tld}/dp/${asin}`;
-    }
-  } catch (err) {
-    console.error(err);
-    throw new Error('Could not shorten link.');
+chrome.storage.sync.get('options', ({ options: savedOpts }) => {
+  if (chrome.runtime.lastError) {
+    infoError(chrome.runtime.lastError);
+  } else {
+    opts = savedOpts;
   }
-}
-
-function applyRegExp(url, regExp, group) {
-  if (regExp.test(url)) {
-    const match = url.match(regExp);
-
-    if (Array.isArray(match) && match[group]) return match[group];
-  }
-
-  throw new Error('Could not apply regular expression.');
-}
-
-function infoError(err) {
-  spanInfo.style.color = 'red';
-  spanInfo.textContent = err.message;
-}
+});

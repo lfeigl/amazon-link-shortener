@@ -3,15 +3,6 @@ const buttonSave = document.getElementById('button-save');
 const spanInfo = document.getElementById('span-info');
 let opts = null;
 
-chrome.storage.sync.get('options', ({ options: savedOpts }) => {
-  if (chrome.runtime.lastError) {
-    console.error(chrome.runtime.lastError);
-  } else {
-    opts = savedOpts;
-    loadOpts();
-  }
-});
-
 function loadOpts() {
   checkboxShorterUrl.checked = opts.shorterUrl;
 }
@@ -39,3 +30,12 @@ buttonSave.onclick = () => {
     }
   });
 };
+
+chrome.storage.sync.get('options', ({ options: savedOpts }) => {
+  if (chrome.runtime.lastError) {
+    console.error(chrome.runtime.lastError);
+  } else {
+    opts = savedOpts;
+    loadOpts();
+  }
+});
