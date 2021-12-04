@@ -16,7 +16,7 @@
   "scripts": {
     "preinstall": "npx only-allow pnpm",
     "prepare": "husky install",
-    "lint": "eslint **/*.js"
+    "lint": "eslint ./src/**/*.js"
   },
   "dependencies": {
     "alpinejs": "^3.7.0"
