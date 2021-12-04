@@ -1,0 +1,31 @@
+{
+  "name": "amazon-link-shortener",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Link shortener for Amazon.",
+  "author": "Luca Feigl",
+  "license": "ISC",
+  "homepage": "https://github.com/lfeigl/amazon-link-shortener#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lfeigl/amazon-link-shortener.git"
+  },
+  "bugs": {
+    "url": "https://github.com/lfeigl/amazon-link-shortener/issues"
+  },
+  "scripts": {
+    "preinstall": "npx only-allow pnpm",
+    "prepare": "husky install",
+    "lint": "eslint **/*.js"
+  },
+  "dependencies": {
+    "alpinejs": "^3.7.0"
+  },
+  "devDependencies": {
+    "@types/chrome": "^0.0.166",
+    "eslint": "^8.3.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.25.3",
+    "husky": "^7.0.0"
+  }
+}
