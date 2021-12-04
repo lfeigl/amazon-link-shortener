@@ -18,23 +18,27 @@ Get the extension [here](https://chrome.google.com/webstore/detail/amazon-link-s
 
 ## Supported Domains
 
-- amazon.ae (United Arab Emirates)
-- amazon.ca (Canada)
-- amazon.cn (China)
-- amazon.co.jp (Japan)
-- amazon.co.uk (United Kingdom)
-- amazon.com (United States)
 - amazon.com.au (Australia)
 - amazon.com.br (Brazil)
-- amazon.com.mx (Mexico)
-- amazon.com.tr (Turkey)
-- amazon.de (Germany)
-- amazon.es (Spain)
+- amazon.ca (Canada)
+- amazon.cn (China)
+- amazon.eg (Egypt)
 - amazon.fr (France)
-- amazon.it (Italy)
+- amazon.de (Germany)
 - amazon.in (India)
+- amazon.it (Italy)
+- amazon.co.jp (Japan)
+- amazon.com.mx (Mexico)
 - amazon.nl (Netherlands)
+- amazon.pl (Poland)
+- amazon.sa (Saudi Arabia)
 - amazon.sg (Singapore)
+- amazon.es (Spain)
+- amazon.se (Sweden)
+- amazon.com.tr (Turkey)
+- amazon.ae (United Arab Emirates)
+- amazon.co.uk (United Kingdom)
+- amazon.com (United States)
 
 
 ## Options
